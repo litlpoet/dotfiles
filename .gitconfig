@@ -1,5 +1,6 @@
 [user]
 	email = litlpoet@gmail.com
 	name = Byungkuk Choi
+	signingkey = E25606000D0D2EE5
 [pull]
 	rebase = false
