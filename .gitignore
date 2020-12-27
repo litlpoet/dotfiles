@@ -1,1 +1,7 @@
 .cfg
+.Xauthority
+.dmrc
+.cache/
+.ssh/
+.xsession-errors
+.xsession-errors.old
