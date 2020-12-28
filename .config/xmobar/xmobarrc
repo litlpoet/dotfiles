@@ -1,17 +1,16 @@
 Config {
-
    -- appearance
-     font =         "xft:NotoSansMono:size=10:bold:antialias=true"
+     font =         "xft:JetBrains Mono:size=9:ExtraLight:antialias=true"
    , bgColor =      "black"
    , fgColor =      "#646464"
-   , position =     Bottom
+   , position =     Top
    , border =       BottomB
    , borderColor =  "#646464"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
+   , template = " %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %NZWN% | %date% || %kbd% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -38,8 +37,11 @@ Config {
    , commands =
 
         -- weather monitor
-        [ Run Weather "RJTT" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
+        [ Run Weather "NZWN" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
                              ] 36000
+
+	-- stdin reader
+	-- , Run StdinReader
 
         -- network activity monitor (dynamic interface resolution)
         , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"

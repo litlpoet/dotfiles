@@ -1,7 +1,11 @@
-.cfg
-.Xauthority
-.dmrc
+#directories
 .cache/
+.mozilla/
 .ssh/
+
+# files
+.Xauthority
+.cfg
+.dmrc
 .xsession-errors
 .xsession-errors.old
