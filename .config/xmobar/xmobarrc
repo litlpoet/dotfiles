@@ -37,12 +37,13 @@ Config {
    --   color can be set by enclosing in <fc></fc> tags. For more details
    --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
    , commands =
-        -- weather monitor
-        [ Run Weather "NZWN" [ "--template", "<skyCondition>; <fc=#4682B4><tempC></fc>°C; <fc=#4682B4><rh></fc>%"
-                             ] 36000
-
+        [
         -- stdin reader
-        --, Run StdinReader
+        Run StdinReader
+
+        -- weather monitor
+        , Run Weather "NZWN" [ "--template", "<skyCondition>; <fc=#4682B4><tempC></fc>°C; <fc=#4682B4><rh></fc>%"
+                             ] 36000
 
         -- network activity monitor (dynamic interface resolution)
         , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s,<rx>kB/s"
@@ -80,8 +81,7 @@ Config {
                              , "--high"     , "darkred"
                              ] 10
 
-        -- time and date indicator
-        --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
+        -- time and date indicator (%a = day of week, %T = h:m:s time)
         , Run Date           "<fc=#ABABAB>%b %d (%a) %T</fc>" "date" 10
         ]
    }
