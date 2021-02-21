@@ -1,18 +1,19 @@
 Config {
    -- appearance
-     font =         "xft:JetBrains Mono:size=10:Light:antialias=true"
-   , additionalFonts = [ "xft:Font Awesome 5 Free Solid:pixelsize=12:antialias=true:hinting=true" ]
-   , bgColor =      "black"
-   , fgColor =      "#646464"
-   , position =     Top
-   , border =       BottomB
-   , borderColor =  "#232323"
-   , iconRoot =     "/home/bk/.local/share/icons/"
+     -- font =         "xft:JetBrains Mono:size=10:Light:antialias=true"
+     font =            "xft:Noto Sans Mono CJK KR:size=12:antialias=true"
+   , additionalFonts = ["xft:Font Awesome 5 Free Solid:pixelsize=12:antialias=true:hinting=true" ]
+   , bgColor =         "black"
+   , fgColor =         "#646464"
+   , position =        Top
+   , border =          BottomB
+   , borderColor =     "#232323"
+   , iconRoot =        "/home/bk/.local/share/icons/"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<icon=haskell_20.xpm/> }{ %multicpu% | %multicoretemp% | %memory% | %dynnetwork% | %NZWN% | %date% "
+   , template = "<icon=haskell_20.xpm/> %UnsafeStdinReader%}{ %multicpu% | %multicoretemp% | %memory% | %dynnetwork% | %NZWN% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -39,10 +40,11 @@ Config {
    , commands =
         [
         -- stdin reader
-        Run StdinReader
+        Run UnsafeStdinReader
 
         -- weather monitor
-        , Run Weather "NZWN" [ "--template", "<skyCondition>; <fc=#4682B4><tempC></fc>°C; <fc=#4682B4><rh></fc>%"
+        , Run Weather "NZWN" [ "--template"
+                             , "<skyCondition>; <fc=#4682B4><tempC></fc>°C; <fc=#4682B4><rh></fc>%"
                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)
