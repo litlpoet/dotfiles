@@ -34,7 +34,7 @@ myLogHook = fadeInactiveLogHook fadeAmount where fadeAmount = 0.9
 
 myStartupHook :: X ()
 myStartupHook = do
-  spawnOnce "picom --experimental-backends &"
+  spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence &"
   spawnOnce "nitrogen --restore &"
 
 main = do

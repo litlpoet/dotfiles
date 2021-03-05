@@ -8,4 +8,6 @@ export QT_IM_MODULE=ibus
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export XMODIFIERS=@im=ibus
 
+export XDG_CONFIG_HOME=$HOME/.config
+
 ibus-daemon -drx &
