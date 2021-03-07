@@ -1,7 +1,7 @@
-gtk-icon-theme-name = "Paper"
-gtk-theme-name = "Materia-dark-compact"
 gtk-font-name = "Roboto 11"
+gtk-icon-theme-name = "Paper"
 gtk-key-theme-name = "Emacs"
+gtk-theme-name = "Materia-dark-compact"
 gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintslight"
