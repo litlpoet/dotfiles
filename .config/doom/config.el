@@ -3,25 +3,24 @@
 ;; Place your private configuration here
 
 ;; ui fine-tuning
-(setq
- doom-theme 'doom-tomorrow-night
- ;; doom-font (font-spec :family "Iosevka"
- ;;                      :size 15
-                      ;; :width 'light
-                      ;; :weight 'light
- ;;                      )
-  )
+(setq doom-theme 'doom-nord)
 
+(setq doom-font (font-spec :family "JetBrains Mono" :size 14)
+      doom-variable-pitch-font (font-spec :family "Noto Sans CJK KR" :size 14)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 24))
 (set-fontset-font t 'hangul (font-spec :name "Noto Sans Mono CJK KR"))
 
 ;; I don't like line numbers
 (setq display-line-numbers-type nil)
 
-;; bar cursor please
-(setq-default cursor-type '(bar . 2))
+;; fill column mode not in org mode
+(remove-hook! '(text-mode-hook) #'+fill-column-enable-h)
 
 ;; fill-column = 100
 (setq-default fill-column 100)
+
+;; bar cursor please
+(setq-default cursor-type '(bar . 2))
 
 ;; lsp config not to see warning every time
 (when (featurep! :tools lsp)
@@ -85,16 +84,16 @@
    [remap projectile-compile-project]  nil
 
    (:when (featurep! :completion ivy)
-     "C-s" #'counsel-grep-or-swiper
-     "C-r" #'counsel-grep-or-swiper-backward)
+    "C-s" #'counsel-grep-or-swiper
+    "C-r" #'counsel-grep-or-swiper-backward)
 
    (:when (featurep! :tools lsp)
-     "C-c C-f"  #'+default/lsp-format-region-or-buffer) ;; this is my coding habit
+    "C-c C-f"  #'+default/lsp-format-region-or-buffer) ;; this is my coding habit
 
    (:when (featurep! :editor multiple-cursors)
-     "M-3" #'mc/mark-previous-like-this
-     "M-4" #'mc/mark-next-like-this
-     "M-#" #'mc/skip-to-previous-like-this
-     "M-$" #'mc/skip-to-next-like-this)
+    "M-3" #'mc/mark-previous-like-this
+    "M-4" #'mc/mark-next-like-this
+    "M-#" #'mc/skip-to-previous-like-this
+    "M-$" #'mc/skip-to-next-like-this)
    )
   )
