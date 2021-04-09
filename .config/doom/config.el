@@ -3,7 +3,7 @@
 ;; Place your private configuration here
 
 ;; ui fine-tuning
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-opera)
 
 (setq doom-font (font-spec :family "JetBrains Mono" :size 14)
       doom-variable-pitch-font (font-spec :family "Noto Sans CJK KR" :size 14)
@@ -19,9 +19,6 @@
 ;; fill-column = 100
 (setq-default fill-column 100)
 
-;; bar cursor please
-(setq-default cursor-type '(bar . 2))
-
 ;; lsp config not to see warning every time
 (when (featurep! :tools lsp)
   (after! lsp
@@ -33,15 +30,15 @@
               python-mode
               emacs-lisp-mode) #'+word-wrap-mode))
 
-;; build-in package configs
-(use-package! dired-x
-  :after (dired)
-  ;; :bind (:map dired-mode-map
-  ;;         (")" . dired-omit-mode))
-  :init (setq-default
-         dired-omit-verbose nil
-         dired-omit-mode    t
-         dired-omit-files   "^\\.$\\|^\\.[^\\.].+$"))
+;; ;; built-in package configs
+;; (use-package! dired-x
+;;   :after (dired)
+;;   ;; :bind (:map dired-mode-map
+;;   ;;         (")" . dired-omit-mode))
+;;   :init (setq-default
+;;          dired-omit-verbose nil
+;;          dired-omit-mode    t
+;;          dired-omit-files   "^\\.$\\|^\\.[^\\.].+$"))
 
 ;; additional packages
 (use-package! page-break-lines
@@ -64,7 +61,9 @@
                                     :compilation-dir "build"
                                     :configure "cmake %s"
                                     :compile "cmake --build . -- -j8"
-                                    :test "ctest"))
+                                    :test "ctest")
+  (define-key!
+    [remap projectile-compile-project] nil))
 
 ;; iedit only for Emacs key-bindings
 (use-package! iedit
