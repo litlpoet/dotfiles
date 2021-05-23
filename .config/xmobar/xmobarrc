@@ -1,8 +1,8 @@
 Config {
    -- appearance
      -- font =         "xft:JetBrains Mono:size=10:Light:antialias=true"
-     font =            "xft:Noto Sans Mono CJK KR:size=12:antialias=true"
-   , additionalFonts = ["xft:Font Awesome 5 Free Solid:pixelsize=12:antialias=true:hinting=true" ]
+     font =            "xft:Noto Sans Mono CJK KR:size=14:antialias=true"
+   , additionalFonts = ["xft:Font Awesome 5 Free Solid:pixelsize=14:antialias=true:hinting=true" ]
    , bgColor =         "black"
    , fgColor =         "#646464"
    , position =        Top
