@@ -1,11 +1,20 @@
 #directories
 .cache/
+.cargo/
+.gnupg/
 .mozilla/
 .ssh/
+.xmonad/
+Downloads/
+dev/
+doc/
 
 # files
 .Xauthority
 .cfg
 .dmrc
+.lesshst
+.python_history
+.wget-hsts
 .xsession-errors
 .xsession-errors.old
