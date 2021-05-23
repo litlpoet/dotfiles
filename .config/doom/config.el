@@ -7,6 +7,7 @@
 
 (setq doom-font (font-spec :family "JetBrains Mono" :size 14)
       doom-variable-pitch-font (font-spec :family "Noto Sans CJK KR" :size 14)
+      doom-unicode-font (font-spec :family "JetBrains Mono")
       doom-big-font (font-spec :family "JetBrains Mono" :size 24))
 (set-fontset-font t 'hangul (font-spec :name "Noto Sans Mono CJK KR"))
 
@@ -21,8 +22,7 @@
 
 ;; lsp config not to see warning every time
 (when (featurep! :tools lsp)
-  (after! lsp
-    (setq lsp-file-watch-threshold 10000)))
+  (setq lsp-file-watch-threshold 10000))
 
 ;; word-wrap config
 (when (featurep! :editor word-wrap)
@@ -30,15 +30,10 @@
               python-mode
               emacs-lisp-mode) #'+word-wrap-mode))
 
-;; ;; built-in package configs
-;; (use-package! dired-x
-;;   :after (dired)
-;;   ;; :bind (:map dired-mode-map
-;;   ;;         (")" . dired-omit-mode))
-;;   :init (setq-default
-;;          dired-omit-verbose nil
-;;          dired-omit-mode    t
-;;          dired-omit-files   "^\\.$\\|^\\.[^\\.].+$"))
+;; rgb mode config
+(when (featurep! :tools rgb)
+  (add-hook! 'rainbow-mode-hook
+    (hl-line-mode (if rainbow-mode -1 +1))))
 
 ;; additional packages
 (use-package! page-break-lines
@@ -62,8 +57,19 @@
                                     :configure "cmake %s"
                                     :compile "cmake --build . -- -j8"
                                     :test "ctest")
+  (projectile-register-project-type 'waf
+                                    '("wscript")
+                                    :configure "waf distclean configure"
+                                    :compile "waf")
+
   (define-key!
     [remap projectile-compile-project] nil))
+
+;; ccls set out-of-tree build directory
+(after! ccls
+  (setq ccls-initialization-options
+        (append ccls-initialization-options
+                `(:compilationDatabaseDirectory "build"))))
 
 ;; iedit only for Emacs key-bindings
 (use-package! iedit
