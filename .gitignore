@@ -1,6 +1,9 @@
 #directories
 .cache/
 .cargo/
+.config/dconf/
+.config/emacs/
+.config/google-chrome/
 .gnupg/
 .mozilla/
 .ssh/

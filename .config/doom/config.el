@@ -14,6 +14,9 @@
 ;; I don't like line numbers
 (setq display-line-numbers-type nil)
 
+;; org directory
+(setq org-directory "~/doc/org")
+
 ;; fill column mode not in org mode
 (remove-hook! '(text-mode-hook) #'+fill-column-enable-h)
 
