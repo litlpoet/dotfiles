@@ -1,19 +1,19 @@
 Config {
    -- appearance
-     -- font =         "xft:JetBrains Mono:size=10:Light:antialias=true"
-     font =            "xft:Noto Sans Mono CJK KR:size=14:antialias=true"
-   , additionalFonts = ["xft:Font Awesome 5 Free Solid:pixelsize=14:antialias=true:hinting=true" ]
+   font =              "xft:JetBrains Mono:size=12:Light:antialias=true"
+   -- font =              "xft:Noto Sans Mono CJK KR:size=13:antialias=true"
+   , additionalFonts = [ "xft:Font Awesome 5 Free Solid:pixelsize=13:antialias=true:hinting=true"
+                       , "xft:Noto Sans CJK KR:size=13:antialias=true"]
    , bgColor =         "black"
-   , fgColor =         "#646464"
-   , position =        Top
-   , border =          BottomB
-   , borderColor =     "#232323"
+   , fgColor =         "grey"
+   , position =        Static {xpos=0, ypos=0, width=2410, height=30}
+   , border =          NoBorder
    , iconRoot =        "/home/bk/.local/share/icons/"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<icon=haskell_20.xpm/> %UnsafeStdinReader%}{ %multicpu% | %multicoretemp% | %memory% | %dynnetwork% | %NZWN% | %date% "
+   , template = "<icon=haskell_20.xpm/> %UnsafeStdinReader% }{ %multicpu% | %multicoretemp% | %memory% | %dynnetwork% | %NZWN% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -44,14 +44,14 @@ Config {
 
         -- weather monitor
         , Run Weather "NZWN" [ "--template"
-                             , "<skyCondition>; <fc=#4682B4><tempC></fc>°C; <fc=#4682B4><rh></fc>%"
+                             , "<skyCondition> <fc=#4682B4><tempC></fc>°C <fc=#4682B4><rh></fc>%"
                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s,<rx>kB/s"
+        , Run DynNetwork     [ "--template" , "<fn=1></fn> <tx>Kb <rx>Kb"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "5000"       -- units: B/s
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "#98be65"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
@@ -60,7 +60,7 @@ Config {
         , Run MultiCpu       [ "--template" , "<fn=1></fn> <total>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "#98be65"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
@@ -69,7 +69,7 @@ Config {
         , Run MultiCoreTemp  [ "--template" , "<fn=1></fn> <avg>°C"
                              , "--Low"      , "70"        -- units: °C
                              , "--High"     , "80"        -- units: °C
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "#98be65"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 50
@@ -78,12 +78,12 @@ Config {
         , Run Memory         [ "--template" ,"<fn=1></fn> <usedratio>%"
                              , "--Low"      , "20"        -- units: %
                              , "--High"     , "90"        -- units: %
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "#98be65"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
 
         -- time and date indicator (%a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ABABAB>%b %d (%a) %T</fc>" "date" 10
+        , Run Date           "%b %d (%a) %T" "date" 10
         ]
    }

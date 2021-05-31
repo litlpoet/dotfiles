@@ -51,19 +51,20 @@ myManageHook = namedScratchpadManageHook myScratchPads
 myStartupHook = do
   spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence &"
   spawnOnce "nitrogen --restore &"
+  spawnOnce "stalonetray &"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 myBarPP bar = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
-  { ppCurrent         = xmobarColor "#98be65" "" . wrap "[" "]" -- Current workspace in xmobar
-  , ppVisible         = xmobarColor "#98be65" "" . wrap " " " " -- Visible but not current workspace
-  , ppHidden          = xmobarColor "#82AAFF" "" . wrap "*" " " -- Hidden workspaces in xmobar
-  , ppHiddenNoWindows = xmobarColor "#c792ea" "" . wrap " " " " -- Hidden workspaces (no windows)
-  , ppUrgent          = xmobarColor "#C45500" "" . wrap "!" "!" -- Urgent workspace
-  , ppSep             = "<fc=#666666> <fn=1>|</fn> </fc>"       -- Separators in xmobar
-  , ppTitle           = xmobarColor "#b3afc2" "" . shorten 60   -- Title of active window in xmobar
+  { ppCurrent         = xmobarColor "#a9cf76" "#333333" . wrap "[" "]"
+  , ppVisible         = xmobarColor "#98be65" "" . wrap " " " "
+  , ppHidden          = xmobarColor "#898989" "" . wrap "*" " "
+  , ppHiddenNoWindows = xmobarColor "#565656" "" . wrap " " " "
+  , ppUrgent          = xmobarColor "#C45500" "" . wrap "!" "!"
+  , ppSep             = xmobarColor "#565656" "" " : "
+  , ppTitle = xmobarColor "#cccc88" "" . wrap "<fn=2>" "</fn>" . shorten 60
   , ppOrder           = \(ws : l : t : ex) -> [ws, l] ++ ex ++ [t]
-                     -- , ppExtras = [windowCount]                               -- # of windows current workspace
+                     -- , ppExtras = [windowCount]
   , ppOutput          = hPutStrLn bar
   }
 
