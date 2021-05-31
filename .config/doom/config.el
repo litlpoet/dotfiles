@@ -5,17 +5,33 @@
 ;; ui fine-tuning
 (setq doom-theme 'doom-opera)
 
+;; (setq doom-font (font-spec :family "JetBrains Mono" :size 14)
+;;       doom-variable-pitch-font (font-spec :family "Noto Sans CJK KR" :size 14)
+;;       doom-unicode-font (font-spec :family "JetBrains Mono")
+;;       doom-big-font (font-spec :family "JetBrains Mono" :size 24))
+;; (set-fontset-font t 'hangul (font-spec :name "Noto Sans Mono CJK KR"))
 (setq doom-font (font-spec :family "JetBrains Mono" :size 14)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 24)
       doom-variable-pitch-font (font-spec :family "Noto Sans CJK KR" :size 14)
-      doom-unicode-font (font-spec :family "JetBrains Mono")
-      doom-big-font (font-spec :family "JetBrains Mono" :size 24))
-(set-fontset-font t 'hangul (font-spec :name "Noto Sans Mono CJK KR"))
+      doom-unicode-font (font-spec :name "Noto Sans Mono CJK KR"))
+
+;; Korean input methods
+(setq default-input-method "korean-hangul")
+(map! "S-SPC" #'toggle-input-method)
+
 
 ;; I don't like line numbers
 (setq display-line-numbers-type nil)
 
-;; org directory
-(setq org-directory "~/doc/org")
+;; org mode
+(setq org-directory "~/Dropbox/Org")
+(after! org
+  (setq org-tags-column -100))
+
+;; deft
+(when (featurep! :ui deft)
+  (after! deft
+    (setq deft-directory org-directory)))
 
 ;; fill column mode not in org mode
 (remove-hook! '(text-mode-hook) #'+fill-column-enable-h)
