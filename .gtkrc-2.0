@@ -3,9 +3,9 @@
 
 include "/home/bk/.gtkrc-2.0.mine"
 gtk-theme-name="Materia-dark-compact"
-gtk-icon-theme-name="Paper"
-gtk-font-name="Roboto 11"
-gtk-cursor-theme-name="Paper"
+gtk-icon-theme-name="Adwaita"
+gtk-font-name="Overpass 11"
+gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
 gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
