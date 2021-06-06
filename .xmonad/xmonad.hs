@@ -18,7 +18,8 @@ main = do
   bar <- spawnPipe "xmobar"
   xmonad
     $                 docks
-    $                 ewmh def { handleEventHook    = myHandleEventHook
+    $                 ewmh def { borderWidth        = 2
+                               , handleEventHook    = myHandleEventHook
                                , layoutHook         = myLayout
                                , logHook            = myLogHook bar
                                , manageHook         = myManageHook
@@ -26,8 +27,8 @@ main = do
                                , startupHook        = myStartupHook
                                , terminal           = "alacritty"
                                , workspaces         = myWorkspaces
-                               , normalBorderColor  = "#333333"
-                               , focusedBorderColor = "#778899"
+                               , normalBorderColor  = myColBg
+                               , focusedBorderColor = myColH3
                                }
     `additionalKeysP` myKeys
 
@@ -41,28 +42,26 @@ myLayout = avoidStruts tiled ||| noBorders Full
   ratio  = 4 / 7
 
 myLogHook bar =
-  workspaceHistoryHook
-    <+> myBarPP bar
-    <+> fadeInactiveCurrentWSLogHook fadeAmount
-  where fadeAmount = 0.90
+  workspaceHistoryHook <+> myBarPP bar <+> fadeInactiveLogHook fadeAmount
+  where fadeAmount = 0.95
 
 myManageHook = namedScratchpadManageHook myScratchPads
 
 myStartupHook = do
-  spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence &"
+  spawnOnce "picom --experimental-backends &"
   spawnOnce "nitrogen --restore &"
   spawnOnce "stalonetray &"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 myBarPP bar = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
-  { ppCurrent         = xmobarColor "#a9cf76" "#333333" . wrap "[" "]"
-  , ppVisible         = xmobarColor "#98be65" "" . wrap " " " "
-  , ppHidden          = xmobarColor "#898989" "" . wrap "*" " "
-  , ppHiddenNoWindows = xmobarColor "#565656" "" . wrap " " " "
-  , ppUrgent          = xmobarColor "#C45500" "" . wrap "!" "!"
-  , ppSep             = xmobarColor "#565656" "" " : "
-  , ppTitle = xmobarColor "#cccc88" "" . wrap "<fn=2>" "</fn>" . shorten 60
+  { ppCurrent         = xmobarColor myColH1 "" . wrap "[" "]"
+  , ppVisible         = xmobarColor myColH2 "" . wrap " " " "
+  , ppHidden          = xmobarColor myColFg "" . wrap "*" " "
+  , ppHiddenNoWindows = xmobarColor myColDm "" . wrap " " " "
+  , ppUrgent          = xmobarColor myColH3 "" . wrap "!" "!"
+  , ppSep             = xmobarColor myColDm "" " : "
+  , ppTitle = xmobarColor myColFg "" . wrap "<fn=1>" "</fn>" . shorten 60
   , ppOrder           = \(ws : l : t : ex) -> [ws, l] ++ ex ++ [t]
                      -- , ppExtras = [windowCount]
   , ppOutput          = hPutStrLn bar
@@ -105,3 +104,10 @@ myScratchPads =
 
 spacingHelper o i =
   spacingRaw False (Border o o o o) True (Border i i i i) True
+
+myColFg = "#c5c6c7"
+myColBg = "#0b0c10"
+myColDm = "#1f2833"
+myColH1 = "#66fcf1"
+myColH2 = "#45a29e"
+myColH3 = "#ee4c7c"

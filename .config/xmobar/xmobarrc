@@ -1,19 +1,27 @@
 Config {
    -- appearance
-   font =              "xft:JetBrains Mono:size=12:Light:antialias=true"
-   -- font =              "xft:Noto Sans Mono CJK KR:size=13:antialias=true"
-   , additionalFonts = [ "xft:Font Awesome 5 Free Solid:pixelsize=13:antialias=true:hinting=true"
-                       , "xft:Noto Sans CJK KR:size=13:antialias=true"]
-   , bgColor =         "black"
-   , fgColor =         "grey"
+   font =              "xft:Overpass Mono:size=12:antialias=true"
+   , additionalFonts = [ "xft:Noto Sans CJK KR:size=12:antialias=true:weight=200:slant=100"
+                       , "xft:Font Awesome 5 Free Solid:size=12"]
+   , textOffset =      22
+   , textOffsets =     [22, 22]
+   , bgColor =         "#0b0c10"
+   , fgColor =         "#c5c6c7"
    , position =        Static {xpos=0, ypos=0, width=2410, height=30}
    , border =          NoBorder
    , iconRoot =        "/home/bk/.local/share/icons/"
+   , iconOffset =      16
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<icon=haskell_20.xpm/> %UnsafeStdinReader% }{ %multicpu% | %multicoretemp% | %memory% | %dynnetwork% | %NZWN% | %date% "
+   , template = "<icon=haskell_20.xpm/> %UnsafeStdinReader% }{ \
+                 \%multicpu% <fc=#1f2833>:</fc> \
+                 \%memory% <fc=#1f2833>:</fc> \
+                 \%multicoretemp% <fc=#1f2833>:</fc> \
+                 \%dynnetwork% <fc=#1f2833>:</fc> \
+                 \%NZWN% <fc=#1f2833>:</fc> \
+                 \%date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -42,46 +50,59 @@ Config {
         -- stdin reader
         Run UnsafeStdinReader
 
-        -- weather monitor
-        , Run Weather "NZWN" [ "--template"
-                             , "<skyCondition> <fc=#4682B4><tempC></fc>°C <fc=#4682B4><rh></fc>%"
-                             ] 36000
-
-        -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork     [ "--template" , "<fn=1></fn> <tx>Kb <rx>Kb"
-                             , "--Low"      , "1000"       -- units: B/s
-                             , "--High"     , "5000"       -- units: B/s
-                             , "--low"      , "#98be65"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 10
-
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "<fn=1></fn> <total>%"
-                             , "--Low"      , "50"         -- units: %
-                             , "--High"     , "85"         -- units: %
-                             , "--low"      , "#98be65"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 10
-
-        -- cpu multi core temperature monitor
-        , Run MultiCoreTemp  [ "--template" , "<fn=1></fn> <avg>°C"
-                             , "--Low"      , "70"        -- units: °C
-                             , "--High"     , "80"        -- units: °C
-                             , "--low"      , "#98be65"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 50
+        , Run MultiCpu        [ "--template" , "<fn=2>\xf085</fn> <total>%"
+                              , "--Low"      , "50"         -- units: %
+                              , "--High"     , "85"         -- units: %
+                              , "--low"      , "#45a29e"
+                              , "--normal"   , "#66fcf1"
+                              , "--high"     , "#ee4c7c"
+                              ] 10
 
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"<fn=1></fn> <usedratio>%"
-                             , "--Low"      , "20"        -- units: %
-                             , "--High"     , "90"        -- units: %
-                             , "--low"      , "#98be65"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 10
+        , Run Memory          [ "--template" ,"<fn=2>\xf2db</fn> <usedratio>%"
+                              , "--Low"      , "20"        -- units: %
+                              , "--High"     , "90"        -- units: %
+                              , "--low"      , "#45a29e"
+                              , "--normal"   , "#66fcf1"
+                              , "--high"     , "#ee4c7c"
+                              ] 10
+
+        -- cpu multi core temperature monitor
+        , Run MultiCoreTemp   [ "--template" , "<fn=2>\xf769</fn> <avg>°C"
+                              , "--Low"      , "70"        -- units: °C
+                              , "--High"     , "80"        -- units: °C
+                              , "--low"      , "#45a29e"
+                              , "--normal"   , "#66fcf1"
+                              , "--high"     , "#ee4c7c"
+                              ] 50
+
+        -- network activity monitor (dynamic interface resolution)
+        , Run DynNetwork      [ "--template" , "<fn=2>\xf6ff</fn> <tx>Kb <rx>Kb"
+                              , "--Low"      , "1000"       -- units: B/s
+                              , "--High"     , "5000"       -- units: B/s
+                              , "--low"      , "#45a29e"
+                              , "--normal"   , "#66fcf1"
+                              , "--high"     , "#ee4c7c"
+                              ] 10
+
+        -- weather monitor
+        , Run WeatherX "NZWN" [ ("clear", "\xf111")
+                              , ("sunny", "\xf185")
+                              , ("mostly clear", "\xf111")
+                              , ("mostly sunny", "\xf185")
+                              , ("partly sunny", "\xf6c4")
+                              , ("fair", "\xf140")
+                              , ("cloudy","\xf0c2")
+                              , ("overcast","\xf773")
+                              , ("partly cloudy", "\xf6c4")
+                              , ("mostly cloudy", "\xf0c2")
+                              , ("considerable cloudiness", "\xf75f")]
+                              [ "--template"
+                              , "<fn=2><skyConditionS></fn> \
+                                 \<fc=#45a29e><tempC></fc>°C \
+                                 \<fc=#45a29e><rh></fc>%"
+                              ] 18000
 
         -- time and date indicator (%a = day of week, %T = h:m:s time)
         , Run Date           "%b %d (%a) %T" "date" 10
