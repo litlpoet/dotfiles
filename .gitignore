@@ -1,15 +1,21 @@
 #directories
 .cache/
 .cargo/
+.config/BraveSoftware/
+.config/GIMP/
 .config/dconf/
 .config/emacs/
 .config/google-chrome/
+.config/stacer/
+.config/teams/
+.dropbox/
 .gnupg/
 .mozilla/
 .ssh/
-Downloads/
 dev/
 doc/
+Downloads/
+Dropbox/
 
 # files
 .Xauthority
@@ -20,3 +26,7 @@ doc/
 .wget-hsts
 .xsession-errors
 .xsession-errors.old
+.xmonad/xmonad-x86_64-linux
+.xmonad/xmonad.errors
+.xmonad/xmonad.hi
+.xmonad/xmonad.o
