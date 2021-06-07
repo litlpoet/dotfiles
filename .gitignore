@@ -26,7 +26,5 @@ Dropbox/
 .wget-hsts
 .xsession-errors
 .xsession-errors.old
-.xmonad/xmonad-x86_64-linux
-.xmonad/xmonad.errors
-.xmonad/xmonad.hi
-.xmonad/xmonad.o
+.config/xmonad/xmonad.hi
+.config/xmonad/xmonad.o
