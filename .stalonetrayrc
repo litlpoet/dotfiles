@@ -44,7 +44,7 @@ grow_gravity W
 icon_gravity E
 
 # icon_size <int>            # specifies dimensions of typical icon slot
-icon_size 30
+icon_size 22
 
 # log_level <level>          # controls the amount of logging output, level can
                              # be err (default), info, or trace (enabled only
@@ -92,6 +92,7 @@ scrollbars none
 
 # slot_size <int>            # specifies size of icon slot, defaults to
                              # icon_size NEW in @VERSION_STR@.
+slot_size 30
 
 # skip_taskbar [<bool>]      # hide tray`s window from the taskbar
 skip_taskbar true
