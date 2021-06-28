@@ -48,6 +48,7 @@ myLogHook bar =
 myManageHook = namedScratchpadManageHook myScratchPads
 
 myStartupHook = do
+  spawnOnce "lxsession &"
   spawnOnce "picom --experimental-backends &"
   spawnOnce "nitrogen --restore &"
   spawnOnce "stalonetray &"
@@ -98,7 +99,7 @@ myScratchPads =
   findLf     = title =? "lf"
   manageLf   = customFloating $ W.RationalRect l t w h
   h          = 0.6
-  w          = 0.85
+  w          = 0.6
   t          = (1.0 - h) / 1.1
   l          = (1.0 - w) / 2
 
