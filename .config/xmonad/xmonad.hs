@@ -1,4 +1,5 @@
 import           XMonad
+import           XMonad.Actions.PhysicalScreens
 import           XMonad.Config
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
@@ -13,6 +14,7 @@ import           XMonad.Util.EZConfig
 import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Run
 import           XMonad.Util.SpawnOnce
+import           XMonad.Util.WorkspaceCompare
 
 main = do
   bar <- spawnPipe "xmobar"
@@ -53,7 +55,7 @@ myStartupHook = do
   spawnOnce "nitrogen --restore &"
   spawnOnce "stalonetray &"
 
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+myWorkspaces = ["1M", "2R", "3L"]
 
 myBarPP bar = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
   { ppCurrent         = xmobarColor myColH1 "" . wrap "[" "]"
@@ -62,9 +64,10 @@ myBarPP bar = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
   , ppHiddenNoWindows = xmobarColor myColDm "" . wrap " " " "
   , ppUrgent          = xmobarColor myColH3 "" . wrap "!" "!"
   , ppSep             = xmobarColor myColDm "" " : "
+  , ppWsSep           = ""
   , ppTitle = xmobarColor myColFg "" . wrap "<fn=1>" "</fn>" . shorten 60
-  , ppOrder           = \(ws : l : t : ex) -> [ws, l] ++ ex ++ [t]
-                     -- , ppExtras = [windowCount]
+  , ppOrder           = \(ws : layout : t : _) -> [ws, layout, t]
+  , ppSort            = getSortByXineramaPhysicalRule def
   , ppOutput          = hPutStrLn bar
   }
 
@@ -78,10 +81,15 @@ myKeys =
     , (("M-o"), namedScratchpadAction myScratchPads "htop")
     , (("M-f"), namedScratchpadAction myScratchPads "lf")
     ]
-    ++ [ (m ++ "M-" ++ [k], act tag)
-       | (tag, k  ) <- zip myWorkspaces "123456789"
-       , (m  , act) <- [("", windows . W.view), ("S-", windows . W.shift)]
+    ++ [ ("M-" ++ mask ++ show key, fn tag)
+       | (key, tag ) <- zip [2, 3, 1] ["1M", "2R", "3L"]
+       , (fn , mask) <- [(windows . W.view, ""), (windows . W.shift, "S-")]
        ]
+    ++ [ ("M-" ++ mask ++ key, fn screen)
+       | (key, screen) <- zip ["w", "e", "r"] [0 ..]
+       , (fn , mask  ) <- [(viewScreen def, ""), (sendToScreen def, "S-")]
+       ]
+
 
 myScratchPads =
   [ NS "term" spawnTerm findTerm manageTerm

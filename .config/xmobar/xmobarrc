@@ -1,13 +1,13 @@
 Config {
    -- appearance
-   font =              "xft:Overpass Mono:size=12:antialias=true"
-   , additionalFonts = [ "xft:Noto Sans CJK KR:size=12:antialias=true:weight=200:slant=100"
-                       , "xft:Font Awesome 5 Free Solid:size=12"]
+   font =              "xft:Overpass Mono:size=13:antialias=true"
+   , additionalFonts = [ "xft:Noto Sans CJK KR:size=13:antialias=true:weight=200:slant=100"
+                       , "xft:Font Awesome 5 Free Solid:size=13"]
    , textOffset =      22
    , textOffsets =     [22, 22]
    , bgColor =         "#0b0c10"
    , fgColor =         "#c5c6c7"
-   , position =        Static {xpos=0, ypos=0, width=2410, height=30}
+   , position =        Static {xpos=1440, ypos=480, width=2410, height=30}
    , border =          NoBorder
    , iconRoot =        "/home/bk/.local/share/icons/"
    , iconOffset =      16
