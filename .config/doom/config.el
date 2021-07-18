@@ -69,6 +69,7 @@
          (c-mode-common . google-make-newline-indent)))
 
 ;; projectile configs
+(setq projectile-project-search-path '("~/dev/prj" "~/dev/sandbox" "~/dev/ref"))
 (after! projectile
   (projectile-register-project-type 'cmake
                                     '("CMakeLists.txt")
