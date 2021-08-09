@@ -36,8 +36,8 @@
 ;; fill column mode not in org mode
 (remove-hook! '(text-mode-hook) #'+fill-column-enable-h)
 
-;; fill-column = 100
-(setq-default fill-column 100)
+;; fill-column = 80
+(setq-default fill-column 80)
 
 ;; lsp config not to see warning every time
 (when (featurep! :tools lsp)
