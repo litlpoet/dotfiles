@@ -9,6 +9,7 @@
 .config/stacer/
 .config/teams/
 .dropbox/
+.dropbox-dist/
 .gnupg/
 .mozilla/
 .ssh/

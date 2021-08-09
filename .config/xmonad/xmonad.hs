@@ -45,7 +45,7 @@ myLayout = avoidStruts tiled ||| noBorders Full
 
 myLogHook bar =
   workspaceHistoryHook <+> myBarPP bar <+> fadeInactiveLogHook fadeAmount
-  where fadeAmount = 0.95
+  where fadeAmount = 1.0
 
 myManageHook = namedScratchpadManageHook myScratchPads
 
