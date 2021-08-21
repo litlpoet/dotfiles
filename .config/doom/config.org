@@ -1,0 +1,127 @@
+#+STARTUP: content
+
+#+TITLE: BK's doom config
+
+* Look & Feel
+** Theme
+Have been using doom-opera, and it looks good.
+
+#+begin_src elisp
+(setq doom-theme 'doom-opera)
+#+end_src
+
+** Line numbers
+I don't prefer to have line numbers
+
+#+begin_src elisp
+(setq display-line-numbers-type nil)
+#+end_src
+
+** Fill-column mode
+Set 80 columns for programming. Hide the line for wriitng.
+
+#+begin_src elisp
+(setq-default fill-column 80)
+(remove-hook! '(text-mode-hook) #'+fill-column-enable-h)
+#+end_src
+
+** Word-wrap mode
+#+begin_src elisp
+(when (featurep! :editor word-wrap)
+  (add-hook! (c-mode-common
+              python-mode
+              emacs-lisp-mode) #'+word-wrap-mode))
+#+end_src
+
+** Fonts
+#+begin_src elisp
+(setq doom-font (font-spec :family "JetBrains Mono" :size 14)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 24)
+      doom-variable-pitch-font (font-spec :family "Noto Sans CJK KR" :size 14)
+      doom-unicode-font (font-spec :name "Noto Sans Mono CJK KR"))
+#+end_src
+
+** Hangul input
+#+begin_src elisp
+(setq default-input-method "korean-hangul")
+(map! "S-SPC" #'toggle-input-method)
+#+end_src
+
+** RBG mode
+#+begin_src elisp
+(when (featurep! :tools rgb)
+  (add-hook! 'rainbow-mode-hook
+    (hl-line-mode (if rainbow-mode -1 +1))))
+#+end_src
+
+** Page break lines
+#+begin_src elisp :tangle packages.el
+(package! page-break-lines)
+#+end_src
+
+#+begin_src elisp
+(use-package! page-break-lines
+  :hook ((text-mode
+          emacs-lisp-mode
+          lisp-mode
+          compilation-mode
+          outline-mode
+          help-mode) . page-break-lines-mode))
+#+end_src
+
+* Project
+** Projectile
+#+begin_src elisp
+(setq projectile-project-search-path '("~/dev/prj" "~/dev/sandbox" "~/dev/ref"))
+(after! projectile
+  (projectile-register-project-type 'cmake
+                                    '("CMakeLists.txt")
+                                    :compilation-dir "build"
+                                    :configure "cmake %s"
+                                    :compile "cmake --build . -- -j8"
+                                    :test "ctest")
+  (projectile-register-project-type 'waf
+                                    '("wscript")
+                                    :configure "waf distclean configure"
+                                    :compile "waf")
+
+  (define-key!
+    [remap projectile-compile-project] nil))
+#+end_src
+
+* Writing
+** Org mode
+#+begin_src elisp
+(setq org-directory "~/org")
+(after! org
+  (setq org-tags-column -100))
+#+end_src
+
+** Deft mode
+#+begin_src elisp
+(when (featurep! :ui deft)
+  (after! deft
+    (setq deft-directory org-directory)))
+#+end_src
+
+* Programming
+** LSP mode
+#+begin_src elisp
+(when (featurep! :tools lsp)
+  (setq lsp-file-watch-threshold 10000))
+#+end_src
+
+** CCLS (C++)
+
+#+begin_src elisp
+(after! ccls
+  (setq ccls-initialization-options
+        (append ccls-initialization-options
+                `(:compilationDatabaseDirectory "build"))))
+#+end_src
+
+* External Apps & Services
+** Org Jira
+#+begin_src elisp :tangle packages.el
+(package! org-jira)
+#+end_src
