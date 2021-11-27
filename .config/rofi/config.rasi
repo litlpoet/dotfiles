@@ -43,7 +43,7 @@ cycle: false;
 /*  drun-use-desktop-cache: false;*/
 /*  filter: ;*/
 /*  ignored-prefixes: "";*/
-m: "2";
+m: "1";
 /*  matching-negate-char: '-' /* unsupported */;*/
 /*  matching: "normal";*/
 /*  max-history-size: 25;*/

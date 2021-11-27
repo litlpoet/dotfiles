@@ -1,6 +1,5 @@
-#+STARTUP: content
-
 #+TITLE: BK's doom config
+#+STARTUP: content
 
 * Look & Feel
 ** Theme
@@ -8,6 +7,7 @@ Have been using doom-opera, and it looks good.
 
 #+begin_src elisp
 (setq doom-theme 'doom-opera)
+;; (setq doom-theme 'doom-one)
 #+end_src
 
 ** Line numbers
@@ -17,7 +17,7 @@ I don't prefer to have line numbers
 (setq display-line-numbers-type nil)
 #+end_src
 
-** Fill-column mode
+** Fill-column
 Set 80 columns for programming. Hide the line for wriitng.
 
 #+begin_src elisp
@@ -25,7 +25,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 (remove-hook! '(text-mode-hook) #'+fill-column-enable-h)
 #+end_src
 
-** Word-wrap mode
+** Word-wrap
 #+begin_src elisp
 (when (featurep! :editor word-wrap)
   (add-hook! (c-mode-common
@@ -47,7 +47,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 (map! "S-SPC" #'toggle-input-method)
 #+end_src
 
-** RBG mode
+** RBG
 #+begin_src elisp
 (when (featurep! :tools rgb)
   (add-hook! 'rainbow-mode-hook
@@ -72,7 +72,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 * Project
 ** Projectile
 #+begin_src elisp
-(setq projectile-project-search-path '("~/dev/prj" "~/dev/sandbox" "~/dev/ref"))
+(setq projectile-project-search-path '(("~/dev/" . 1)))
 (after! projectile
   (projectile-register-project-type 'cmake
                                     '("CMakeLists.txt")
@@ -90,14 +90,14 @@ Set 80 columns for programming. Hide the line for wriitng.
 #+end_src
 
 * Writing
-** Org mode
+** Org
 #+begin_src elisp
 (setq org-directory "~/org")
 (after! org
-  (setq org-tags-column -100))
+  (setq org-tags-column 0))
 #+end_src
 
-** Deft mode
+** Deft
 #+begin_src elisp
 (when (featurep! :ui deft)
   (after! deft
@@ -105,7 +105,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 #+end_src
 
 * Programming
-** LSP mode
+** LSP
 #+begin_src elisp
 (when (featurep! :tools lsp)
   (setq lsp-file-watch-threshold 10000))

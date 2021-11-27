@@ -7,7 +7,7 @@ Config {
    , textOffsets =     [22, 22]
    , bgColor =         "#0b0c10"
    , fgColor =         "#c5c6c7"
-   , position =        Static {xpos=1440, ypos=480, width=2410, height=30}
+   , position =        Static {xpos=0, ypos=0, width=2410, height=30}
    , border =          NoBorder
    , iconRoot =        "/home/bk/.local/share/icons/"
    , iconOffset =      16
