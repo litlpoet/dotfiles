@@ -20,18 +20,18 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       (company            ; the ultimate code completion backend
-        +childframe
+       (company           ; the ultimate code completion backend
+        ;; +childframe
         )
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy                ; a search engine for love and life
-        +prescient
-        +childframe
-        +icons
-        )
-       ;; (vertico           ; the search engine of the future
-       ;;  +icons)
+       ;; (ivy               ; a search engine for love and life
+       ;;  +prescient
+       ;;  +childframe
+       ;;  +icons
+       ;;  )
+       (vertico           ; the search engine of the future
+        +icons)
 
        :ui
        deft              ; notational velocity for Emacs
@@ -57,7 +57,7 @@
         +defaults        ; default popup rules
         )
        ;;tabs              ; a tab bar for Emacs
-       (treemacs           ; a project drawer, like neotree but cooler
+       (treemacs          ; a project drawer, like neotree but cooler
         +lsp)
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -107,6 +107,7 @@
 
        :tools
        ;;ansible
+       ;;biblio            ; Writes a PhD for you (citation needed)
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        ;;docker
@@ -150,6 +151,7 @@
        ;;ess               ; emacs speaks statistics
        ;;factor
        ;;faust             ; dsp, but you get to keep your soul
+       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
@@ -184,7 +186,7 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       (python             ; beautiful is better than ugly
+       (python            ; beautiful is better than ugly
         +lsp
         +pyright
         )

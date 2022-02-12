@@ -43,7 +43,7 @@ cycle: false;
 /*  drun-use-desktop-cache: false;*/
 /*  filter: ;*/
 /*  ignored-prefixes: "";*/
-m: "1";
+m: "0";
 /*  matching-negate-char: '-' /* unsupported */;*/
 /*  matching: "normal";*/
 /*  max-history-size: 25;*/
@@ -67,7 +67,6 @@ separator-style: "none";
 /*  ssh-client: "ssh";*/
 /*  ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 terminal: "alacritty";
-theme: "theme_dmenu";
 /*  threads: 0;*/
 /*  tokenize: true;*/
 /*  width: 100;*/
@@ -150,3 +149,4 @@ theme: "theme_dmenu";
 /*  me-accept-entry: "MouseDPrimary";*/
 /*  me-accept-custom: "Control+MouseDPrimary";*/
 }
+@theme "theme_dmenu"
