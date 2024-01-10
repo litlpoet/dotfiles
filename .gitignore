@@ -55,6 +55,8 @@ doc/
 .config/QtProject.conf
 .config/xmonad/xmonad.hi
 .config/xmonad/xmonad.o
+.config/doom/config.el
+.config/doom/packages.el
 .dmrc
 .lesshst
 .node_repl_history
