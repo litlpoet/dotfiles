@@ -44,7 +44,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 ** Hangul input
 #+begin_src elisp
 (setq default-input-method "korean-hangul")
-(map! "S-SPC" #'toggle-input-method)
+(map! "C-SPC" #'toggle-input-method)
 #+end_src
 
 ** RBG
@@ -72,7 +72,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 * Project
 ** Projectile
 #+begin_src elisp
-(setq projectile-project-search-path '(("~/dev/" . 1)))
+(setq projectile-project-search-path '(("~/Codes/" . 2)))
 (after! projectile
   (projectile-register-project-type 'cmake
                                     '("CMakeLists.txt")
@@ -99,9 +99,9 @@ Set 80 columns for programming. Hide the line for wriitng.
 
 ** Deft
 #+begin_src elisp
-(when (featurep! :ui deft)
-  (after! deft
-    (setq deft-directory org-directory)))
+;; (when (featurep! :ui deft)
+;;   (after! deft
+;;     (setq deft-directory org-directory)))
 #+end_src
 
 * Programming
@@ -123,5 +123,5 @@ Set 80 columns for programming. Hide the line for wriitng.
 * External Apps & Services
 ** Org Jira
 #+begin_src elisp :tangle packages.el
-(package! org-jira)
+;; (package! org-jira)
 #+end_src
