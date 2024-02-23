@@ -73,6 +73,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 ** Projectile
 #+begin_src elisp
 (setq projectile-project-search-path '(("~/Codes/" . 2)))
+(setq +workspaces-switch-project-function (lambda (dir) (dired dir)))
 (after! projectile
   (projectile-register-project-type 'cmake
                                     '("CMakeLists.txt")
