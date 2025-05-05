@@ -35,9 +35,9 @@ Set 80 columns for programming. Hide the line for wriitng.
 
 ** Fonts
 #+begin_src elisp
-(setq doom-font (font-spec :family "JetBrains Mono" :size 10.0)
+(setq doom-font (font-spec :family "JetBrains Mono" :size 13.0)
       doom-big-font (font-spec :family "JetBrains Mono" :size 20.0)
-      doom-variable-pitch-font (font-spec :family "Noto Sans CJK KR" :size 11.0)
+      doom-variable-pitch-font (font-spec :family "Noto Sans CJK KR" :size 13.0)
       ;; doom-unicode-font (font-spec :name "NanumGothicCoding" :size 13.0)
       )
 (set-fontset-font "fontset-default" 'hangul (font-spec :family "NanumGothicCoding" :size 13.5))

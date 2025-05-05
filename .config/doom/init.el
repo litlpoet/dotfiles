@@ -51,6 +51,7 @@
         +all             ; catch all popups that start with an asterix
         +defaults        ; default popup rules
         )
+       ;;smooth-scroll     ; So smooth you won't believe it's not butter
        ;;tabs              ; a tab bar for Emacs
        ;;(treemacs          ; a project drawer, like neotree but cooler
        ;; +lsp)
@@ -81,6 +82,7 @@
        (dired             ; making dired pretty [functional]
         +icons)
        electric          ; smarter, keyword-based electric-indent
+       ;;eww               ; the internet is gross
        (ibuffer          ; interactive buffer management
         +icons
         )
@@ -116,7 +118,6 @@
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        pdf               ; pdf enhancements
-       ;;prodigy           ; FIXME managing external services & code builders
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        tree-sitter       ; syntax and parsing, sitting in a tree...
@@ -180,6 +181,7 @@
         )
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
+       ;;graphviz          ; diagrams for confusing yourself even more
        ;;purescript        ; javascript, but functional
        (python            ; beautiful is better than ugly
         +lsp
