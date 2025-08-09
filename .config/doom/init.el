@@ -113,6 +113,7 @@
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
+       ;;llm               ; when I said you needed friends, I didn't mean...
        (lsp +peek)           ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -164,9 +165,10 @@
        ;;kotlin            ; a better, slicker Java(Script)
        latex             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
-       ledger            ; be audit you can be
+       ;; ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
-       (markdown +grip)          ; writing docs for people to ignore
+       markdown
+       ;; (markdown +grip)          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
