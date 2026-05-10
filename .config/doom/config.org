@@ -1,6 +1,17 @@
 #+TITLE: BK's doom config
 #+STARTUP: content
 
+* Foundation
+** evil
+#+begin_src elisp
+(setq evil-escape-key-sequence "jk")
+#+end_src
+
+** Dired
+#+begin_src elisp
+(setq find-file-visit-truename nil)
+#+end_src
+
 * Look & Feel
 ** Theme
 Have been using doom-opera, and it looks good.
@@ -27,7 +38,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 
 ** Word-wrap
 #+begin_src elisp
-(when (featurep! :editor word-wrap)
+(when (modulep! :editor word-wrap)
   (add-hook! (c-mode-common
               python-mode
               emacs-lisp-mode) #'+word-wrap-mode))
@@ -51,7 +62,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 
 ** RBG
 #+begin_src elisp
-(when (featurep! :tools rgb)
+(when (modulep! :tools rgb)
   (add-hook! 'rainbow-mode-hook
     (hl-line-mode (if rainbow-mode -1 +1))))
 #+end_src
@@ -102,7 +113,7 @@ Set 80 columns for programming. Hide the line for wriitng.
 
 ** Deft
 #+begin_src elisp
-;; (when (featurep! :ui deft)
+;; (when (modulep! :ui deft)
 ;;   (after! deft
 ;;     (setq deft-directory org-directory)))
 #+end_src
@@ -110,21 +121,62 @@ Set 80 columns for programming. Hide the line for wriitng.
 * Programming
 ** LSP
 #+begin_src elisp
-(when (featurep! :tools lsp)
-  (setq lsp-file-watch-threshold 10000))
+(when (modulep! :tools lsp)
+  (setq lsp-file-watch-threshold 10000)
+  (setq lsp-lens-enable nil))
+
+(after! lsp-mode
+  (setq lsp-enable-suggest-server-download nil
+        lsp-auto-install-server nil))
+#+end_src
+
+** CMake (C++)
+#+begin_src elisp
+;; Doom: config.el
+;; (after! eglot
+;;   (setq eglot-server-programs
+;;         (cl-remove-if
+;;          (lambda (it)
+;;            (equal (car it) '(cmake-mode cmake-ts-mode)))
+;;          eglot-server-programs))
+;;   (add-to-list 'eglot-server-programs
+;;                '((cmake-mode cmake-ts-mode) . ("neocmakelsp" "--stdio"))))
 #+end_src
 
 ** CCLS (C++)
-
 #+begin_src elisp
-(after! ccls
-  (setq ccls-initialization-options
-        (append ccls-initialization-options
-                `(:compilationDatabaseDirectory "build"))))
+;; (after! ccls
+;;   (setq ccls-initialization-options
+;;         (append ccls-initialization-options
+;;                 `(:compilationDatabaseDirectory "build"))))
+#+end_src
+
+** Python
+#+begin_src elisp
+;; (setq lsp-pyright-venv-directory ".venv"
+;;       lsp-pyright-langserver-command "basedpyright")
+;; (after! lsp-pyright
+;;   (setq lsp-pyright-venv-directory ".venv"
+;;         lsp-pyright-langserver-command '("basedpyright-langserver")))
 #+end_src
 
 * External Apps & Services
 ** Org Jira
 #+begin_src elisp :tangle packages.el
 ;; (package! org-jira)
+#+end_src
+
+* LLM
+** gptel
+#+begin_src elisp :tangle packages.el
+;; (unpin! gptel)
+;; (package! gptel :recipe (:host github :repo "karthink/gptel"))
+#+end_src
+
+#+begin_src elisp
+;; (use-package! gptel
+;;   :config
+;;   (setq gptel-backend
+;;         (gptel-make-gemini "Gemini" :key #'gptel-api-key :stream t)
+;;         gptel-model 'gemini-2.5-flash-preview-05-20))  ;; or 'gemini-2.5-pro
 #+end_src

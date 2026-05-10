@@ -107,13 +107,13 @@
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
        ;;debugger          ; FIXME stepping through code, to help you add bugs
-       ;;direnv
+       direnv
        ;;docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
-       ;;llm               ; when I said you needed friends, I didn't mean...
+       ;; llm               ; when I said you needed friends, I didn't mean...
        (lsp +peek)           ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -121,7 +121,7 @@
        pdf               ; pdf enhancements
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
-       tree-sitter       ; syntax and parsing, sitting in a tree...
+       ;; tree-sitter       ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -131,7 +131,8 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
-       (cc +lsp +tree-sitter)           ; C > C++ == 1
+       (cc +lsp ;; +tree-sitter
+           )           ; C > C++ == 1
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -174,9 +175,9 @@
        ;;ocaml             ; an objective camel
        (org               ; organize your plain life in plain text
         +dragndrop        ; drag & drop files/images into org buffers
-        +hugo             ; use Emacs for hugo blogging
+        ;; +hugo             ; use Emacs for hugo blogging
         +jupyter          ; ipython/jupyter support for babel
-        +pandoc           ; export-with-pandoc support
+        ;; +pandoc           ; export-with-pandoc support
         ;;+pomodoro         ; be fruitful with the tomato technique
         +present          ; using org-mode for presentations
         +pretty
@@ -187,8 +188,8 @@
        ;;purescript        ; javascript, but functional
        (python            ; beautiful is better than ugly
         +lsp
-        ;; +pyright
-        +tree-sitter
+        +pyright
+        ;; +tree-sitter
         )
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
@@ -199,7 +200,7 @@
        ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;(scheme +guile)   ; a fully conniving family of lisps
-       sh                ; she sells {ba,z,fi}sh shells on the C xor
+       ;; sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
